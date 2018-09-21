@@ -13,6 +13,8 @@ import com.example.juyoung.waiting2.R;
 import com.example.juyoung.waiting2.activity.MainActivity;
 import com.example.juyoung.waiting2.activity.MainActivityBoss;
 import com.facebook.stetho.Stetho;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SplashActivity extends AppCompatActivity {
     @Override
@@ -20,6 +22,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         Stetho.initializeWithDefaults(this);
+
         LottieAnimationView lottieAnimationView=(LottieAnimationView)findViewById(R.id.lottie);
         lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
@@ -29,6 +32,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animator) {
+
                 //로그인 정보를 불러온다.
                 SharedPreferences pref = getSharedPreferences("loginInfo", MODE_PRIVATE);
                 MyApplication.user_nick = pref.getString("nickname", null);

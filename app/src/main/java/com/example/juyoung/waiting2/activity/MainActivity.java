@@ -40,6 +40,8 @@ import net.daum.mf.map.api.MapView;
 
 import com.example.juyoung.waiting2.MyApplication;
 import com.example.juyoung.waiting2.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //백버튼 두번 터치를 위한 변수 2초안에 두번 누르면 종료.
@@ -75,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
         myToolbar = (Toolbar) findViewById(R.id.toolbar2);
         myToolbar.setNavigationIcon(R.drawable.ic_action_menu_unselected);
         setSupportActionBar(myToolbar);
@@ -294,6 +295,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id) {
             case R.id.bookMark:
                 intent = new Intent(this, BookMarkActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.chat:
+                intent=new Intent(this,ChatActivity.class);
                 startActivity(intent);
                 break;
             default:

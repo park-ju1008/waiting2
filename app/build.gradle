@@ -44,5 +44,9 @@ dependencies {
     //폴리 피커 라이브러리를 사용하기 위해서
     api 'com.github.ParkSangGwon:TedPicker:v1.0.10'
     //로티 애니메이션을 위한 라이브러리
-    implementation 'com.airbnb.android:lottie:2.5.5'
+    api 'com.airbnb.android:lottie:2.5.5'
+    api 'com.google.firebase:firebase-database:16.0.1'
+    api 'com.google.firebase:firebase-core:16.0.1'
 }
+
+apply plugin: 'com.google.gms.google-services'

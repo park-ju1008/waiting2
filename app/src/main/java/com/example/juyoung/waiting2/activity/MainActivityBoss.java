@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import com.example.juyoung.waiting2.MyApplication;
 import com.example.juyoung.waiting2.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivityBoss extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{

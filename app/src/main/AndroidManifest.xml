@@ -75,6 +75,7 @@
         <activity android:name=".activity.LiveSeatActivityBoss" />
         <activity android:name=".activity.ReplyActivity"
             android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".activity.ChatActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
