@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#eacaca</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#e0b6b6</color>
+    <color name="nomalColor">#eacaca</color>
+    <color name="bossToolbar">#dddddd</color>
+    <color name="rippleText">#aeaeae</color>
+    <color name="white">#FFFFFF</color>
+    <color name="furnitureColor">#FF434343</color>
+    <color name="chairColor">#FFDA3737</color>
+    <color name="gap_background">#f5f5f5</color>
+</resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/underline"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/content_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="리뷰 쓰기"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="153dp"
+            tools:layout_editor_absoluteY="15dp" />
+    </android.support.v7.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/content_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:ems="1000"
+        android:gravity="top"
+        android:hint="이 식당은 어떠셨나요? 느끼신 바를 다른 사람과 공유해보시는 건 어떤가요?"
+        android:inputType="textMultiLine"
+        android:maxLength="2000"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/ok_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/ok_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#d0d0d0"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="완료(0/2000)"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/content_view" />
+</android.support.constraint.ConstraintLayout>

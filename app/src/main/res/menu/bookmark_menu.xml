@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/location"
+        android:icon="@drawable/baseline_room_white_24dp"
+        android:title="@string/location"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/bookMark"
+        android:icon="@drawable/baseline_star_border_white_24dp"
+        android:title="@string/bookmark"
+        app:showAsAction="ifRoom" />
+
+</menu>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">waiting2</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="bookmark">북마크</string>
+    <string name="location">위치</string>
+</resources>

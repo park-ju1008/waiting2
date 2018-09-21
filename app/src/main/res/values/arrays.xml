@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category">
+        <item>음식점</item>
+        <item>푸드트럭</item>
+        <item>카페</item>
+        <item>베이커리/디저트</item>
+    </string-array>
+    
+    <string-array name="restaurant">
+        <item>한식</item>
+        <item>일식</item>
+        <item>중식</item>
+        <item>양식</item>
+        <item>페스트푸드</item>
+        <item>피자</item>
+        <item>치킨</item>
+        <item>분식</item>
+        <item>술집</item>
+    </string-array>
+    <string-array name="cafe">
+        <item>스타벅스</item>
+        <item>카페베네</item>
+        <item>투썸플레이스</item>
+        <item>이디야</item>
+        <item>엔제리너스</item>
+        <item>기타</item>
+    </string-array>
+    <string-array name="dessert">
+        <item>던킨도너츠</item>
+        <item>베스킨라빈스</item>
+        <item>뚜레쥬르</item>
+        <item>파리바게트</item>
+        <item>나뚜르</item>
+        <item>기타</item>
+    </string-array>
+    <string-array name="foodtruck">
+        <item>한식</item>
+        <item>일식</item>
+        <item>중식</item>
+        <item>양식</item>
+        <item>페스트푸드</item>
+        <item>피자</item>
+        <item>치킨</item>
+        <item>분식</item>
+        <item>디저트</item>
+    </string-array>
+</resources>
