@@ -1,8 +1,10 @@
 package com.example.juyoung.waiting2.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.nick.setText(mChats.get(position).getName());
+        Log.v("aaa",stringToHex(mChats.get(position).getName()));
+        holder.nick.setTextColor(Color.parseColor(stringToHex(mChats.get(position).getName())));
         holder.content.setText(mChats.get(position).getContent());
     }
 
@@ -47,5 +51,23 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             nick=(TextView)itemView.findViewById(R.id.nickname_view);
             content=(TextView)itemView.findViewById(R.id.content_view);
         }
+    }
+
+    // 문자열을 헥사 스트링으로 변환하는 메서드
+    public static String stringToHex(String s) {
+        int len=3;
+        String result = "#";
+
+        if(s.length()<3){
+            len=s.length();
+        }
+        for (int i = 0; i < len; i++) {
+            result += String.format("%02X", ((int) s.charAt(i))%255);
+        }
+
+        for(int i=result.length();i<7;i++){
+            result+="0";
+        }
+        return result;
     }
 }

@@ -44,9 +44,7 @@
                     android:scheme="@string/kakao_scheme" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.SplashActivity"
-           >
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -73,9 +71,12 @@
         <activity android:name=".activity.UpdateActivityBoss" />
         <activity android:name=".activity.SeatActivityBoss" />
         <activity android:name=".activity.LiveSeatActivityBoss" />
-        <activity android:name=".activity.ReplyActivity"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".activity.ChatActivity" />
+        <activity
+            android:name=".activity.ReplyActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activity.ChatActivity"
+            android:windowSoftInputMode="adjustResize" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

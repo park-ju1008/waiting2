@@ -4,6 +4,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ public class ChatActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private ArrayList<Chat> mChatArrayList;
+    ConstraintLayout mConstraintLayout;
     RecyclerView mRecyclerView;
     ChatAdapter mChatAdapter;
     EditText mContent;
@@ -48,13 +51,27 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mConstraintLayout=(ConstraintLayout)findViewById(R.id.root);
+        //키보드 올라 왔는지 안올라왔는 지 확인하여 리스트의 마지막으로 이동
+        mConstraintLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                int mRootViewHeight=mConstraintLayout.getRootView().getHeight();
+                int mConstraintHeight=mConstraintLayout.getHeight();
+                int mDiff=mRootViewHeight-mConstraintHeight;
+                if(mDiff>((MyApplication)getApplication()).convertDpToPixel(200)){
+                    mRecyclerView.scrollToPosition(mChatAdapter.getItemCount()-1);
+                }
+            }
+        });
         mRecyclerView = (RecyclerView) findViewById(R.id.chat_list);
         mContent = (EditText) findViewById(R.id.editText);
         mEnter = (ImageView) findViewById(R.id.enterview);
+
         mContent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                Log.v("asdf", "asdf");
             }
 
             @Override
@@ -73,7 +90,6 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
-
         mEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,9 +105,10 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 //새로운 자식이 추가되면 여기가 실행
-                Chat chatData =dataSnapshot.getValue(Chat.class);
+                Chat chatData = dataSnapshot.getValue(Chat.class);
                 mChatArrayList.add(chatData);
-                mChatAdapter.notifyItemInserted(mChatArrayList.size());
+                mRecyclerView.scrollToPosition(mChatAdapter.getItemCount() - 1);
+//                mChatAdapter.notifyItemInserted(mChatArrayList.size());
             }
 
             @Override
@@ -121,6 +138,7 @@ public class ChatActivity extends AppCompatActivity {
         mChatAdapter = new ChatAdapter(mChatArrayList, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
         mRecyclerView.setAdapter(mChatAdapter);
         mRecyclerView.setLayoutManager(linearLayoutManager);
     }
