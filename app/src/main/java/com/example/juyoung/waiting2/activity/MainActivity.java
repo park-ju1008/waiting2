@@ -298,7 +298,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.chat:
-                intent=new Intent(this,ChatActivity.class);
+                intent=new Intent(this,GameActivity.class);
                 startActivity(intent);
                 break;
             default:

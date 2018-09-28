@@ -77,6 +77,8 @@
         <activity
             android:name=".activity.ChatActivity"
             android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".activity.GameActivity"
+            android:screenOrientation="landscape"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
