@@ -37,9 +37,6 @@ public class CustomSeatDialog extends Dialog {
         setContentView(R.layout.custom_seat_dialog);
         mMyApplication = (MyApplication) ((Activity) mContext).getApplication();
         initView();
-
-
-
     }
 
     private void initView() {

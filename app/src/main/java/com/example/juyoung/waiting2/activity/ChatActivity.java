@@ -16,6 +16,7 @@ import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.juyoung.waiting2.Chat;
 import com.example.juyoung.waiting2.MyApplication;
@@ -71,7 +72,6 @@ public class ChatActivity extends AppCompatActivity {
         mContent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                Log.v("asdf", "asdf");
             }
 
             @Override
@@ -93,9 +93,14 @@ public class ChatActivity extends AppCompatActivity {
         mEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Chat chat = new Chat(MyApplication.user_nick, mContent.getText().toString());
-                myRef.push().setValue(chat);
-                mContent.setText("");
+                if(MyApplication.user_nick!=null) {
+                    Chat chat = new Chat(MyApplication.user_nick, mContent.getText().toString());
+                    myRef.push().setValue(chat);
+                    mContent.setText("");
+                }
+                else{
+                    Toast.makeText(view.getContext(),"로그인 후 이용가능합니다.",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -108,7 +113,6 @@ public class ChatActivity extends AppCompatActivity {
                 Chat chatData = dataSnapshot.getValue(Chat.class);
                 mChatArrayList.add(chatData);
                 mRecyclerView.scrollToPosition(mChatAdapter.getItemCount() - 1);
-//                mChatAdapter.notifyItemInserted(mChatArrayList.size());
             }
 
             @Override

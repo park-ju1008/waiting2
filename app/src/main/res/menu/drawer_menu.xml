@@ -13,7 +13,10 @@
             android:title="즐겨찾기"></item>
         <item
             android:id="@+id/chat"
-            android:title="기다림채팅"></item>
+            android:title="기다림 채팅"></item>
+        <item
+            android:id="@+id/game"
+            android:title="기다림 게임"></item>
         <item
             android:id="@+id/version"
             android:title="버전정보"></item>

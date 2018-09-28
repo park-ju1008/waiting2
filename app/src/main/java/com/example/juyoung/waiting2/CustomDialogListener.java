@@ -4,3 +4,4 @@ public interface CustomDialogListener {
     public void OnPositiveClicked(int width,int height,int degree);
     public void OnNegativeClicked();
 }
+

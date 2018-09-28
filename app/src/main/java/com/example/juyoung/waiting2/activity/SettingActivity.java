@@ -210,6 +210,14 @@ public class SettingActivity extends AppCompatActivity implements NavigationView
                 intent = new Intent(this, BookMarkActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.chat:
+                intent=new Intent(this,ChatActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.game:
+                intent=new Intent(this,GameActivity.class);
+                startActivity(intent);
+                break;
             default:
                 Toast.makeText(this, "구현 중", Toast.LENGTH_SHORT).show();
         }
