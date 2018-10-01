@@ -180,4 +180,13 @@ public class MyDataBase extends SQLiteOpenHelper {
         }
         return list;
     }
+    public int getReplyCount(int shop_id){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT count(*) FROM reply where shop_id=?", new String[]{"" + shop_id});
+        int count=0;
+        while(cursor.moveToNext()){
+            count=cursor.getInt(0);
+        }
+        return count;
+    }
 }

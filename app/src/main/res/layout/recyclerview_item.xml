@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shop_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -91,9 +92,20 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/open_eye"
+                    android:drawablePadding="@dimen/textView_padding"
                     android:singleLine="true"
-                    android:text=" 383838" />
+                    android:text="383838" />
 
+                <TextView
+                    android:id="@+id/reply_View"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/reply"
+                    android:drawablePadding="@dimen/textView_padding"
+                    android:singleLine="true"
+                    android:text="11" />
                 <TextView
                     android:id="@+id/distance_View"
                     android:layout_width="wrap_content"

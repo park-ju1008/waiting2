@@ -4,4 +4,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="bookmark">북마크</string>
     <string name="location">위치</string>
+    <string name="waiting_sort"><u>대기순</u></string>
+    <string name="check_sort"><u>조회순</u></string>
+    <string name="reply_sort"><u>리뷰순</u></string>
+    <string name="distance_sort"><u>거리순</u></string>
 </resources>

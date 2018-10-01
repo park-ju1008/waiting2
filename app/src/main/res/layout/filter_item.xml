@@ -24,10 +24,11 @@
             android:layout_marginBottom="3dp"
             android:layout_marginTop="3dp"
             android:background="@drawable/ripple_effect"
+            android:drawablePadding="@dimen/textView_padding"
             android:drawableRight="@drawable/down_arrow"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="이름순" />
+            android:text="@string/check_sort" />
 
         <View
             android:id="@+id/view"

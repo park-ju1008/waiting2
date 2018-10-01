@@ -349,7 +349,7 @@ public class RegisterActivityBoss extends AppCompatActivity {
                 }
                 sb = new StringBuilder();
                 String line;
-                int count = 0;
+
                 while ((line = br.readLine()) != null) {
                     sb.append(line + "\n");
                 }
