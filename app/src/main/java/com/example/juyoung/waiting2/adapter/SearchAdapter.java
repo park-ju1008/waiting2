@@ -3,10 +3,7 @@ package com.example.juyoung.waiting2.adapter;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
@@ -14,10 +11,9 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.GradientDrawable;
-import android.location.Location;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -37,31 +33,30 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.juyoung.waiting2.BottomFilterDialog;
+import com.example.juyoung.waiting2.BottomFilterDialogListener;
 import com.example.juyoung.waiting2.BottomSortDialog;
 import com.example.juyoung.waiting2.BottomSortDialogListener;
+import com.example.juyoung.waiting2.Shop;
 import com.example.juyoung.waiting2.activity.BranchActivity;
 import com.example.juyoung.waiting2.MultiInfo;
 import com.example.juyoung.waiting2.MyDataBase;
 import com.example.juyoung.waiting2.R;
-import com.example.juyoung.waiting2.activity.MainActivity;
 import com.example.juyoung.waiting2.activity.SearchActivity;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResolvableApiException;
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
-import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -70,8 +65,13 @@ public class SearchAdapter extends RecyclerView.Adapter<ViewHolder> {
     public static final int VIEWPAGER_TYPE = 0;
     public static final int FILTER_TYPE = 1;
     public static final int SHOP_TYPE = 2;
+    public static final int CATE_ALL = 0;
+    public static final int CATE_RESTAURANT = 1;
+    public static final int CATE_FOODTRUCK = 2;
+    public static final int CATE_DESSERT = 3;
     private final int PERMISSON_LOCATION = 14;
-    int sort_curIndex = 0;
+    public String[] filter_list = {"음식점", "푸드트럭", "카페", "베이커리/디저트", "한식", "일식", "중식", "양식", "페스트푸드", "치킨", "분식", "술집"};
+    int sort_curIndex = 0, filter_curIndex = 0, sel_filter_food;
     FilterViewHolder mFilterViewHolder;
     Context context;
     ViewPagerAdapter mPagerAdapter;
@@ -110,8 +110,8 @@ public class SearchAdapter extends RecyclerView.Adapter<ViewHolder> {
                 viewHolder = new ViewPagerViewHolder(view);
                 break;
             case FILTER_TYPE:
-                mFilterViewHolder= new FilterViewHolder(view);
-                viewHolder=mFilterViewHolder;
+                mFilterViewHolder = new FilterViewHolder(view);
+                viewHolder = mFilterViewHolder;
                 break;
             case SHOP_TYPE:
                 viewHolder = new ShopViewHolder(view);
@@ -207,10 +207,10 @@ public class SearchAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     // 필터 레이아웃을 위한 뷰홀더
     public class FilterViewHolder extends ViewHolder {
-        public  TextView sort_view;
+        public TextView sort_view;
         TextView filter_view;
 
-        public FilterViewHolder(View itemView) {
+        public FilterViewHolder(final View itemView) {
             super(itemView);
             sort_view = (TextView) itemView.findViewById(R.id.sort_View);
             filter_view = (TextView) itemView.findViewById(R.id.filter_View);
@@ -266,13 +266,13 @@ public class SearchAdapter extends RecyclerView.Adapter<ViewHolder> {
                                                 try {
                                                     LocationSettingsResponse response = task.getResult(ApiException.class);
                                                     //GPS가 켜져 있다면 여기로 온다.
-                                                    sort_curIndex=3;
+                                                    sort_curIndex = 3;
                                                     sort_view.setText(R.string.distance_sort);
                                                     ((SearchActivity) context).getCurrentLocation();
                                                     SharedPreferences pref = context.getSharedPreferences("location", Context.MODE_PRIVATE);
                                                     double latitude = Double.longBitsToDouble(pref.getLong("latitude", 0));
                                                     double longitude = Double.longBitsToDouble(pref.getLong("longitude", 0));
-                                                    ((SearchActivity)context).setDistance(items, latitude, longitude);
+                                                    ((SearchActivity) context).setDistance(items, latitude, longitude);
                                                     sortDistance(items);
                                                     notifyDataSetChanged();
                                                 } catch (ApiException e) {
@@ -296,6 +296,39 @@ public class SearchAdapter extends RecyclerView.Adapter<ViewHolder> {
                                     }
                                     break;
                             }
+                        }
+                    });
+                }
+            });
+
+            filter_view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final BottomFilterDialog bottomFilterDialog = BottomFilterDialog.getInstance();
+                    Bundle args = new Bundle();
+                    args.putInt("curIndex", filter_curIndex);
+                    args.putInt("sel_index", sel_filter_food);
+                    bottomFilterDialog.setArguments(args);
+                    bottomFilterDialog.show(((SearchActivity) context).getSupportFragmentManager(), "" + filter_curIndex);
+                    bottomFilterDialog.setBottomFilterDialogListener(new BottomFilterDialogListener() {
+                        @Override
+                        public void selectFilterItem(int category, int sel_filter) {
+                            filter_curIndex = category;
+                            sel_filter_food = sel_filter;
+                            //이전의 리스트 지움
+                            for (int i = items.size() - 1; i > 1; i--) {
+                                items.remove(i);
+                            }
+                            ArrayList<Shop> shops;
+                            if (category == CATE_ALL) {
+                                shops=db.getRegoinShopList("강서구");
+                            } else {
+                                shops=db.getFilteredItem("강서구",getFilterList(category, sel_filter));
+                            }
+                            for (Shop a : shops) {
+                                items.add(new MultiInfo(2, a, db.getLookCount(a.getId()), db.getReplyCount(a.getId())));
+                            }
+                            notifyDataSetChanged();
                         }
                     });
                 }
@@ -389,7 +422,7 @@ public class SearchAdapter extends RecyclerView.Adapter<ViewHolder> {
             if (items.get(position).distance < 1000) {
                 distance_view.setText("" + items.get(position).distance + "m");
             } else {
-                distance_view.setText(String.format("%.2f",items.get(position).distance / 1000.0) + "km");
+                distance_view.setText(String.format("%.2f", items.get(position).distance / 1000.0) + "km");
             }
             waiting_num_view.setText(" " + items.get(position).data.getWaiting_num());
         }
@@ -530,12 +563,56 @@ public class SearchAdapter extends RecyclerView.Adapter<ViewHolder> {
             return true;
         }
     }
-    public void setSort_curIndex(int index){
-        sort_curIndex=index;
+
+    public void setSort_curIndex(int index) {
+        sort_curIndex = index;
     }
 
-    public void setSort_view(String sort){
+    public void setSort_view(String sort) {
         mFilterViewHolder.sort_view.setText(sort);
     }
+
+    private String[] getFilterList(int category, int sel_index) {
+        String[] list = new String[10];
+        for(int i=0;i<list.length;i++){
+            list[i]="";
+        }
+        if (category == CATE_RESTAURANT) {
+            list[0] = filter_list[0];
+        }
+        if (category == CATE_FOODTRUCK) {
+            list[0] = filter_list[0];
+        }
+        //디저트가 아닐때 목록 체크
+        if (category != CATE_DESSERT) {
+            if (sel_index == 0) {
+                sel_index = 255;
+            }
+            for (int i = 0; i < 8; i++) {
+                if (checkIndex(sel_index, i)) {
+                    list[i + 2] = filter_list[i + 4];
+                }
+            }
+        } else {
+            //디저트 목록 체크
+
+        }
+
+        return list;
+    }
+
+    //선택된 음식목록을 찾아내는 메소드
+    public boolean checkIndex(int sel_index, int index) {
+        int temp = sel_index;
+        if (((temp >> index) & 1) == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }
+
+
 

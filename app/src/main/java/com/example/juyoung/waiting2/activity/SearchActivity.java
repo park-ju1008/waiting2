@@ -1,20 +1,11 @@
 package com.example.juyoung.waiting2.activity;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,7 +13,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.juyoung.waiting2.MultiInfo;
 import com.example.juyoung.waiting2.MyDataBase;
@@ -30,17 +20,12 @@ import com.example.juyoung.waiting2.R;
 import com.example.juyoung.waiting2.Shop;
 import com.example.juyoung.waiting2.adapter.SearchAdapter;
 import com.example.juyoung.waiting2.adapter.ViewPagerAdapter;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsStates;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
 
@@ -74,13 +59,8 @@ public class SearchActivity extends AppCompatActivity {
         longitude = Double.longBitsToDouble(pref.getLong("longitude", 0));
 
         initView();
-        Thread thread=new Thread(){
-            @Override
-            public void run() {
-                setRecyclerView();
-            }
-        };
-        thread.start();
+        setRecyclerView();
+
     }
 
     private void initView() {
@@ -153,8 +133,8 @@ public class SearchActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //위치 설정이 켜져있지 않았을때 위치 허용 다이얼로그에서 선택된 결과가 넘어옴.
         LocationSettingsStates states = LocationSettingsStates.fromIntent(data);
-
         if (requestCode == REQUEST_CHECK_SETTINGS && resultCode == RESULT_OK) {
 
             getCurrentLocation();
@@ -184,7 +164,6 @@ public class SearchActivity extends AppCompatActivity {
                 }
                 SharedPreferences pref = getSharedPreferences("location", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
-                Log.v("dodoo", "" + locationResult.getLastLocation().getLatitude() + "  " + locationResult.getLastLocation().getLongitude());
                 editor.putLong("latitude", Double.doubleToRawLongBits(locationResult.getLastLocation().getLatitude()));
                 editor.putLong("longitude", Double.doubleToRawLongBits(locationResult.getLastLocation().getLongitude()));
                 editor.commit();

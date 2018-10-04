@@ -56,7 +56,7 @@ public class MyDataBase extends SQLiteOpenHelper {
         //읽고 쓰기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO place VALUES(null,'" + item.getName() + "','" + item.getFirst_category() + "','" + item.getSecond_category() + "','" + item.getBusiness_hour() + "','" + item.getRegion() + "','" + item.getLocation() + "','" + item.getExplanation() +
-                "','" + item.getPhone() + "'," + item.getX() + "," + item.getY() + "," + item.getWaiting_num() + ",'" + item.getMainImage() + "','" + item.getSubImage() + "','" + userId + "',null);");
+                "','" + item.getPhone() + "'," + item.getX() + "," + item.getY() + "," + item.getWaiting_num() + ",'" + item.getMainImage() + "','" + item.getSubImage() + "','" + userId + "',0,null);");
         db.close();
     }
 
@@ -188,5 +188,16 @@ public class MyDataBase extends SQLiteOpenHelper {
             count=cursor.getInt(0);
         }
         return count;
+    }
+
+    public  ArrayList<Shop> getFilteredItem(String region,String[] list){
+        SQLiteDatabase db=getReadableDatabase();
+
+        Cursor cursor=db.rawQuery("SELECT id,name,region_name,explanation,longitude,latitude,waiting,mainimage FROM place where region_name='"+region+"'AND first_category in(?,?) AND second_category in(?,?,?,?,?,?,?,?)",list);
+        ArrayList<Shop> shops = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            shops.add(new Shop(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getDouble(4), cursor.getDouble(5), cursor.getInt(6), cursor.getString(7)));
+        }
+        return shops;
     }
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@android:color/background_light"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <ToggleButton
+            android:id="@+id/cafe_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/filter_button_selector"
+            android:drawableTop="@drawable/coffee"
+            android:padding="15dp"
+            android:text="카페"
+            android:textColor="@color/not_sel_button"
+            android:textOff="@null"
+            android:textOn="@null"
+            android:textSize="12sp" />
+
+        <ToggleButton
+            android:id="@+id/icecream_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/filter_button_selector"
+            android:drawableTop="@drawable/icecream"
+            android:padding="15dp"
+            android:text="아이스크림"
+            android:textColor="@color/not_sel_button"
+            android:textOff="@null"
+            android:textOn="@null"
+            android:textSize="12sp" />
+
+        <ToggleButton
+            android:id="@+id/bakery_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/filter_button_selector"
+            android:drawableTop="@drawable/cake"
+            android:padding="15dp"
+            android:text="베이커리"
+            android:textColor="@color/not_sel_button"
+            android:textOff="@null"
+            android:textOn="@null"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

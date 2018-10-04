@@ -10,4 +10,6 @@
     <color name="furnitureColor">#FF434343</color>
     <color name="chairColor">#FFDA3737</color>
     <color name="gap_background">#f5f5f5</color>
+    <color name="buttonBoard">#ffaaee</color>
+    <color name="not_sel_button">#B6B6B6</color>
 </resources>

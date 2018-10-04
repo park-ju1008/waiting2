@@ -2,6 +2,7 @@ package com.example.juyoung.waiting2;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
@@ -37,7 +38,7 @@ public class BottomSortDialog extends BottomSheetDialogFragment {
         distance_sort.setOnClickListener(mOnClickListener);
         curIndex=Integer.parseInt(getTag());
         standard.getChildAt(curIndex).setBackgroundResource(R.drawable.sort_button);
-        ((TextView)standard.getChildAt(curIndex)).setTextColor(Color.parseColor("#ffaaee"));
+        ((TextView)standard.getChildAt(curIndex)).setTextColor(getResources().getColor(R.color.buttonBoard));
         return view;
 
     }
@@ -58,7 +59,7 @@ public class BottomSortDialog extends BottomSheetDialogFragment {
                 ((TextView)standard.getChildAt(curIndex)).setTextColor(Color.DKGRAY);
 
                 standard.getChildAt(index).setBackgroundResource(R.drawable.sort_button);
-                ((TextView)standard.getChildAt(index)).setTextColor(Color.parseColor("#ffaaee"));
+                ((TextView)standard.getChildAt(index)).setTextColor(getResources().getColor(R.color.buttonBoard));
             }
             mBottomSortDialogListener.OnItemClicked(index);
         }

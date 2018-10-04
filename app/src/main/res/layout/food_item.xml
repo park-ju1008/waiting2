@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/background_light"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ToggleButton
+            android:id="@+id/rice_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/filter_button_selector"
+            android:drawableTop="@drawable/rice"
+            android:padding="15dp"
+            android:text="한식"
+            android:textColor="#B6B6B6"
+            android:textOff="@null"
+            android:textOn="@null"
+            android:textSize="12sp" />
+        <ToggleButton
+            android:id="@+id/susih_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/filter_button_selector"
+            android:drawableTop="@drawable/sushi"
+            android:padding="15dp"
+            android:text="일식"
+            android:textColor="#B6B6B6"
+            android:textOff="@null"
+            android:textOn="@null"
+            android:textSize="12sp" />
+        <ToggleButton
+            android:id="@+id/Chinese_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/filter_button_selector"
+            android:drawableTop="@drawable/noodles"
+            android:padding="15dp"
+            android:text="중식"
+            android:textColor="#B6B6B6"
+            android:textOff="@null"
+            android:textOn="@null"
+            android:textSize="12sp" />
+        <ToggleButton
+            android:id="@+id/western_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/filter_button_selector"
+            android:drawableTop="@drawable/pizza"
+            android:padding="15dp"
+            android:text="양식"
+            android:textColor="#B6B6B6"
+            android:textOff="@null"
+            android:textOn="@null"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        <ToggleButton
+            android:id="@+id/fest_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/filter_button_selector"
+            android:drawableTop="@drawable/fast_food"
+            android:padding="15dp"
+            android:text="패스트푸드"
+            android:textColor="#B6B6B6"
+            android:textOff="@null"
+            android:textOn="@null"
+            android:textSize="12sp" />
+        <ToggleButton
+            android:id="@+id/chicken_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/filter_button_selector"
+            android:drawableTop="@drawable/chicken"
+            android:padding="15dp"
+            android:text="치킨"
+            android:textColor="#B6B6B6"
+            android:textOff="@null"
+            android:textOn="@null"
+            android:textSize="12sp" />
+        <ToggleButton
+            android:id="@+id/rice_cake_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/filter_button_selector"
+            android:drawableTop="@drawable/rice_cake"
+            android:padding="15dp"
+            android:text="분식"
+            android:textColor="#B6B6B6"
+            android:textOff="@null"
+            android:textOn="@null"
+            android:textSize="12sp" />
+        <ToggleButton
+            android:id="@+id/cocktail_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/filter_button_selector"
+            android:drawableTop="@drawable/cocktail"
+            android:padding="15dp"
+            android:text="술집"
+            android:textColor="#B6B6B6"
+            android:textOff="@null"
+            android:textOn="@null"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -37,7 +37,7 @@
             android:paddingRight="15dp"
             android:paddingTop="10dp"
             android:text="조회순"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@color/not_sel_button" />
 
         <TextView
             android:id="@+id/waiting_sort"
@@ -52,7 +52,7 @@
             android:paddingRight="15dp"
             android:paddingTop="10dp"
             android:text="대기순"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@color/not_sel_button" />
 
         <TextView
             android:id="@+id/reply_sort"
@@ -67,7 +67,7 @@
             android:paddingRight="15dp"
             android:paddingTop="10dp"
             android:text="리뷰순"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@color/not_sel_button" />
 
         <TextView
             android:id="@+id/distance_sort"
@@ -82,7 +82,7 @@
             android:paddingRight="15dp"
             android:paddingTop="10dp"
             android:text="거리순"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@color/not_sel_button" />
     </LinearLayout>
 
     <TextView
